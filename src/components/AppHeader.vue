@@ -5,9 +5,11 @@
     </a>
 
     <div class="right menu">
-      <a class="ui item" href="#" v-if="isLoggedIn">
-        Logout
-      </a>
+      <div v-if="isLoggedIn" class="horizontal">
+        <a class="item">Galleries</a>
+        <a class="item">Upload</a>
+        <a class="item" href="#" @click="logout">Logout</a>
+      </div>
       <a class="ui item" href="#" @click="login" v-else>
         Login
       </a>
@@ -16,12 +18,20 @@
   </div>
 </template>
 
+
 <script>
 import { mapActions, mapGetters } from 'vuex';
 
 export default {
   name: 'AppHeader',
   computed: mapGetters(['isLoggedIn']),
-  methods: mapActions(['login'])
+  methods: mapActions(['login', 'logout'])
 };
 </script>
+
+<style scoped>
+.horizontal {
+  display: flex;
+  flex-direction: row;
+}
+</style>
